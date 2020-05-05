@@ -122,13 +122,55 @@ function isPalindrome(string) {
 // isPalindrome('tacocat')
 
 // SAMPLE INPUT / OUTPUT
-// const isOdd = val => val % 2 !== 0;
 
 // someRecursive([1,2,3,4], isOdd) // true
 // someRecursive([4,6,8,9], isOdd) // true
 // someRecursive([4,6,8], isOdd) // false
 // someRecursive([4,6,8], val => val > 10); // false
+const isOdd = val => val % 2 !== 0;
 
 function someRecursive(arry, callback) {
+  if (arry.length == 0) return false;
+  let val = arry[0];
+  let odd = callback(val);
+  arry.splice(0, 1);
+  if (odd) {
+    return true;
+  } else {
+    return someRecursive(arry, callback);
+  }
+}
+
+// console.log(someRecursive([4,6,8], isOdd)); //true
+
+function flatten(arry) {
+  let empty = [];
+
+  let recurse = ary => {
+    if (ary.length === 0) return;
+
+    for (let i = 0; i < ary.length; i++) {
+      if (Array.isArray(ary[i])) {
+        recurse(ary[i]);
+      } else {
+        empty.push(ary[i]);
+      }
+    }
+  };
+  recurse(arry);
+  return empty
+}
+
+// flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]);
+
+// flatten([1, 2, 3, [4, 5] ]) // [1, 2, 3, 4, 5]
+// flatten([1, [2, [3, 4], [[5]]]]) // [1, 2, 3, 4, 5]
+// flatten([[1],[2],[3]]) // [1,2,3]
+// flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1,2,3
+
+
+function capitalizeFirst () {
   // add whatever parameters you deem necessary - good luck!
 }
+
+// capitalizeFirst(['car','taco','banana']); // ['Car','Taco','Banana']
