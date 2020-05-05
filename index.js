@@ -84,11 +84,9 @@ function recursiveRange(val) {
 
 // recursiveRange(10);
 
-
-
-function reverse(word){
-  let arry = word.split('');
-  return arry.reverse().join('')
+function reverse(word) {
+  let arry = word.split("");
+  return arry.reverse().join("");
 }
 
 // reverse('awesome')
@@ -96,43 +94,32 @@ function reverse(word){
 // reverse('awesome') // 'emosewa'
 // reverse('rithmschool') // 'loohcsmhtir'
 
-
-
 // isPalindrome('awesome') // false
 // isPalindrome('foobar') // false
 // isPalindrome('tacocat') // true
 // isPalindrome('amanaplanacanalpanama') // true
 // isPalindrome('amanaplanacanalpandemonium') // false
 
-function isPalindrome(string){
+function isPalindrome(string) {
   // add whatever parameters you deem necessary - good luck!
-  let ary = string.split('');
-  let back = []
+  let ary = string.split("");
+  let back = [];
   // console.log(ary.length)
-    for(let i = ary.length -1; i >= 0 ; i--){
-      
-      back.push(ary[i])
-    }
-console.log(ary)
-console.log(back)
+  for (let i = ary.length - 1; i >= 0; i--) {
+    back.push(ary[i]);
+  }
+  console.log(ary);
+  console.log(back);
   let forward = JSON.stringify(ary);
   let backward = JSON.stringify(back);
-  if(forward === backward){
-    return true
-  }else{
-    return false
+  if (forward === backward) {
+    return true;
+  } else {
+    return false;
   }
-
-
 }
 
 // isPalindrome('tacocat')
-
-
-
-
-
-
 
 // SAMPLE INPUT / OUTPUT
 // const isOdd = val => val % 2 !== 0;
@@ -142,6 +129,6 @@ console.log(back)
 // someRecursive([4,6,8], isOdd) // false
 // someRecursive([4,6,8], val => val > 10); // false
 
-function someRecursive(arry,callback){
+function someRecursive(arry, callback) {
   // add whatever parameters you deem necessary - good luck!
 }
