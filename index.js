@@ -207,25 +207,92 @@ function nestedEvenSum(obj) {
   return sum;
 }
 
-var obj1 = {
-  outer: 2,
-  obj: {
-    inner: 2,
-    otherObj: {
-      superInner: 2,
-      notANumber: true,
-      alsoNotANumber: "yup"
+// var obj1 = {
+//   outer: 2,
+//   obj: {
+//     inner: 2,
+//     otherObj: {
+//       superInner: 2,
+//       notANumber: true,
+//       alsoNotANumber: "yup"
+//     }
+//   }
+// };
+
+// var obj2 = {
+//   a: 2,
+//   b: { b: 2, bb: { b: 3, bb: { b: 2 } } },
+//   c: { c: { c: 2 }, cc: "ball", ccc: 5 },
+//   d: 1,
+//   e: { e: { e: 2 }, ee: "car" }
+// };
+
+// nestedEvenSum(obj1); // 6
+// nestedEvenSum(obj2); // 10
+
+function capitalizedWords(words) {
+  let base = words;
+  let empty = [];
+  let recurse = arry => {
+    if (arry.length === 0) return;
+    empty.push(base[0].toUpperCase());
+    base.splice(0, 1);
+    recurse(base);
+  };
+  recurse(base);
+  console.log(empty);
+  return empty;
+}
+
+let words = ["i", "am", "learning", "recursion"];
+// capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
+
+let stringobj = {
+  num: 1,
+  test: [],
+  data: {
+    val: 4,
+    info: {
+      isRight: true,
+      random: 66
     }
   }
 };
 
-var obj2 = {
-  a: 2,
-  b: { b: 2, bb: { b: 3, bb: { b: 2 } } },
-  c: { c: { c: 2 }, cc: "ball", ccc: 5 },
-  d: 1,
-  e: { e: { e: 2 }, ee: "car" }
-};
+// stringifyNumbers(obj)
 
-// nestedEvenSum(obj1); // 6
-// nestedEvenSum(obj2); // 10
+// {
+//     num: "1",
+//     test: [],
+//     data: {
+//         val: "4",
+//         info: {
+//             isRight: true,
+//             random: "66"
+//         }
+//     }
+// }
+
+function stringifyNumbers(obj) {
+  let base = Object.assign({}, obj);
+
+  let recurse = o => {
+    if (Object.keys(o).length === 0) return;
+    let k
+    for (k in o) {
+      let val = o[k];
+      if (typeof o[k] == "object") {
+        recurse(val);
+      } else {
+        if (typeof val === "number") {
+          o[k] = val.toString();
+        }
+      }
+    }
+  };
+  recurse(base);
+  console.log(base);
+  return base;
+}
+
+stringifyNumbers(stringobj);
