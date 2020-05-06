@@ -278,7 +278,7 @@ function stringifyNumbers(obj) {
 
   let recurse = o => {
     if (Object.keys(o).length === 0) return;
-    let k
+    let k;
     for (k in o) {
       let val = o[k];
       if (typeof o[k] == "object") {
@@ -295,4 +295,72 @@ function stringifyNumbers(obj) {
   return base;
 }
 
-stringifyNumbers(stringobj);
+// stringifyNumbers(stringobj);
+const obj = {
+  stuff: "foo",
+  data: {
+    val: {
+      thing: {
+        info: "bar",
+        moreInfo: {
+          evenMoreInfo: {
+            weMadeIt: "baz"
+          }
+        }
+      }
+    }
+  }
+};
+
+function collectStrings(obj) {
+  let empty = [];
+  let recurse = o => {
+    if (Object.keys(o).length === 0) return;
+    for (key in o) {
+      let val = o[key];
+      if (typeof o[key] == "object") {
+        recurse(val);
+      } else {
+        empty.push(val);
+      }
+    }
+  };
+  recurse(obj);
+  console.log(empty);
+  return empty;
+}
+
+// collectStrings(obj); // ["foo", "bar", "baz"])
+
+function linearSearch(arry, number) {
+  for (let i = 0; i < arry.length; i++) {
+    if (arry[i] == number) return i;
+  }
+  return -1;
+}
+
+// console.log(linearSearch([10, 15, 20, 25, 30], 15));
+
+function binarySearch(arry, val) {
+  console.log('hit')
+  arry.sort(function(a, b) {
+    return a - b;
+  });
+
+  let start = 0;
+  let end = arry.length - 1;
+  let middle = Math.floor((start + end) / 2);
+
+  while (arry[middle] !== val) {
+    if (val < arry[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+     middle = Math.floor((start + end) / 2);
+  }
+
+  return middle;
+}
+
+console.log("final ", binarySearch([1, 2, 3, 4, 5, 6, 9, 8, 7], 7));
